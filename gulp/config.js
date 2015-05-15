@@ -10,6 +10,10 @@ module.exports = {
             dest: dest,
             name: 'package.json'
         },
+        menus: {
+            src: src + '/menus/**/*.json',
+            dest: dest + '/menus'
+        },
         build: {
             version: '0.26.0',
             src: dest,

@@ -22,6 +22,12 @@ gulp.task('electron-config', function() {
         .pipe(gulp.dest(config.configFile.dest))
 });
 
+gulp.task('electron-menu-json', function() {
+
+    return gulp.src(config.menus.src)
+        .pipe(gulp.dest(config.menus.dest));
+});
+
 
 gulp.task('electron-copy-module', function() {
     var dependencies = Object.keys(packageConfig.dependencies).map(function(dependency) {
@@ -32,7 +38,9 @@ gulp.task('electron-copy-module', function() {
         .pipe(gulp.dest('./build/node_modules'));
 });
 
-gulp.task('electron', ['electron-config', 'electron-copy-module'], function() {
+gulp.task('electron-src', ['electron-config', 'electron-copy-module', 'electron-menu-json']);
+
+gulp.task('electron', ['electron-src'], function() {
     return gulp.src(config.build.src + '/**')
         .pipe(atomshell({
             version: config.build.version,
