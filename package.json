@@ -32,8 +32,10 @@
   "dependencies": {
     "fs-plus": "^2.8.0",
     "lodash": "^3.8.0",
+    "material-ui": "^0.7.5",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
+    "react-tap-event-plugin": "^0.1.6",
     "rx": "^2.5.2",
     "season": "^5.2.0",
     "yargs": "^3.9.0"
