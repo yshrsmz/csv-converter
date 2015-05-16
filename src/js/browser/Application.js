@@ -20,7 +20,6 @@ export default class Application extends EventEmitter {
         super();
 
         this.devMode = options.devMode;
-        console.log(__dirname);
         this.pkgJson = require('../package.json');
         this.windows = [];
 

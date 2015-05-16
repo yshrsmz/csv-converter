@@ -13,7 +13,6 @@ export default class ApplicationMenu extends EventEmitter {
 
         let menuJson = season.resolve(path.join(__dirname, '..', 'menus', `${process.platform}.json`));
         let template = season.readFileSync(menuJson);
-        console.log(options.pkg);
         this.template = this.translateTemplate(template.menu, options.pkg);
     }
 
