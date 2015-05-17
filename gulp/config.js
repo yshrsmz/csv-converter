@@ -54,6 +54,10 @@ module.exports = {
             {
                 src: [src + '/images/**/*'],
                 tasks: ['images']
+            },
+            {
+                src: [src + '/html/**/*.html'],
+                tasks: ['html']
             }
         ]
 
