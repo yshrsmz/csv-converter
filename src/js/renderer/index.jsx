@@ -2,20 +2,13 @@
 
 import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import mui from 'material-ui';
+import App from './renderer/components/App';
+import Routes from './renderer/Routes';
 
 window.React = React;
 injectTapEventPlugin();
 
-let Content = React.createClass({
-    render() {
-        return (
-            <div><h1>This is React generated contents.</h1></div>
-        );
-    }
-});
 
-React.render(
-    <Content/>,
-    document.getElementById('content')
-);
+React.render(Routes, function(Handler) {
+    React.render(<Handler/>, document.getElementById('content'));
+});
