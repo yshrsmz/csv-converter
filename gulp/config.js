@@ -4,6 +4,9 @@ var src = './src';
 var dest = './build';
 
 module.exports = {
+    clean: {
+        src: [ dest + '/*']
+    },
     electron: {
         configFile: {
             src: src + '/template/package.json.hbs',
