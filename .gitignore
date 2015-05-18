@@ -59,3 +59,5 @@ crashlytics-build.properties
 
 build/
 release/
+react-devtools/
+bower_components/
