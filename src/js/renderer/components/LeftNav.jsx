@@ -11,10 +11,12 @@ export default class LeftNav extends React.Component {
     constructor() {
         super();
 
+        this.toggle = this.toggle.bind(this);
         this._onLeftNavChange = this._onLeftNavChange.bind(this);
     }
 
     render() {
+        console.log('leftnav render');
         return (
             <mui.LeftNav
                 ref="leftNav"
@@ -23,6 +25,10 @@ export default class LeftNav extends React.Component {
                 menuItems={menuItems}
                 onChange={this._onLeftNavChange}/>
         );
+    }
+
+    toggle() {
+        this.refs.leftNav.toggle();
     }
 
     _onLeftNavChange(e, key, payload) {
