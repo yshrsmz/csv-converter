@@ -8,6 +8,6 @@ var config = require('../config.js').babel;
 gulp.task('babel', function() {
     return gulp.src(config.src)
         .pipe(plumber())
-        .pipe(babel())
+        .pipe(babel({stage:1}))
         .pipe(gulp.dest(config.dest));
 });
