@@ -3,7 +3,7 @@
 import React from 'react';
 import Router from 'react-router';
 
-import Index from './components/Index';
+import Index from './components/pages/Index';
 
 let Route = Router.Route;
 let NotFoundRoute = Router.NotFoundRoute;
@@ -24,7 +24,3 @@ export default {
         })
     }
 }
-
-
-
-
