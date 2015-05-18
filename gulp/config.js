@@ -34,6 +34,10 @@ module.exports = {
         less: {
             src: src + '/less/main.less',
             dest: dest + '/styles'
+        },
+        css: {
+            src: [(src + '/css/**/*.css'), './bower_components/flexboxgrid/dist/flexboxgrid.css'],
+            dest: dest + '/styles'
         }
     },
     html: {

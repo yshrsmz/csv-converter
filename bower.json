@@ -1,0 +1,21 @@
+{
+  "name": "tsv-converter",
+  "version": "0.0.1",
+  "homepage": "https://github.com/yshrsmz/tsv-converter",
+  "authors": [
+    "Yasuhiro Shimizu <the.phantom.bane@gmail.com>"
+  ],
+  "description": "convert tsv to text files, based on provided template",
+  "main": "index.js",
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "flexboxgrid": "~6.2.0"
+  }
+}
