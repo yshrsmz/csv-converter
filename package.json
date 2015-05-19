@@ -31,12 +31,15 @@
     "webpack": "^1.9.7"
   },
   "dependencies": {
+    "csv": "^0.4.2",
     "fs-plus": "^2.8.0",
+    "handlebars": "^3.0.3",
     "lodash": "^3.8.0",
     "material-ui": "^0.7.5",
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "react-tap-event-plugin": "^0.1.6",
+    "reactable": "^0.10.1",
     "rx": "^2.5.2",
     "season": "^5.2.0",
     "yargs": "^3.9.0"

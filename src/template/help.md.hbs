@@ -1,0 +1,14 @@
+title: {{title}}
+tags:
+-
+categories:
+- {{Category}}
+lang: {{#if lang}}{{lang}}{{else}}ja{{/if}}
+platform: # all/ios/android/pc
+{{#each device}}
+- {{this}}
+{{else}}
+- all
+{{/each}}
+---
+{{{content}}}

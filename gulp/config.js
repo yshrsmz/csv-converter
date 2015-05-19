@@ -48,6 +48,10 @@ module.exports = {
         src: src + '/html/**/*.html',
         dest: dest + '/images'
     },
+    template: {
+        src: src + '/template/**/*.hbs',
+        dest: dest + '/template'
+    },
     watch: {
         targets: [
             {
@@ -65,8 +69,11 @@ module.exports = {
             {
                 src: [src + '/html/**/*.html'],
                 tasks: ['html']
+            },
+            {
+                src: [src + '/template/**/*.hbs'],
+                tasks: ['template']
             }
         ]
-
     }
 };

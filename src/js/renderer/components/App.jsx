@@ -27,12 +27,6 @@ export default class App extends React.Component {
 
                 <div className="content-root">
 
-                    <mui.Toolbar className="toolbar">
-                        <mui.ToolbarGroup key={0} float="left">
-                            <div>toolbar</div>
-                        </mui.ToolbarGroup>
-                    </mui.Toolbar>
-
                     <Router.RouteHandler/>
 
                 </div>

@@ -1,6 +1,5 @@
 import Menu from 'menu';
 import app from 'app';
-import fs from 'fs';
 import ipc from 'ipc';
 import path from 'path';
 import os from 'os';
@@ -23,9 +22,9 @@ export default class AppWindow extends EventEmitter {
         this.loadSettings = _.extend(this.loadSettings, options);
 
         let windowOpts = {
-            width: 800,
+            width: 1000,
             height: 600,
-            'min-width': 800,
+            'min-width': 1000,
             'min-height': 600,
             title: options.title ? options.title : 'You should set options.title',
             'web-preferences': {
@@ -48,6 +47,7 @@ export default class AppWindow extends EventEmitter {
     }
 
     show() {
+
         let targetPath = path.resolve(__dirname, '..', 'index.html')
 
         let targetUrl = url.format({
