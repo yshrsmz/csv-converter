@@ -2,6 +2,7 @@
 
 import fs from 'fs-plus';
 import path from 'path';
+import async from 'async';
 import Handlebars from 'handlebars';
 
 
@@ -22,21 +23,43 @@ export default {
 
         let fileNameTmpl = Handlebars.compile(fileName);
 
-        fs.readFile(templatePath, 'utf8', (err, data) => {
-            if (err) {
-                throw new Error(`${templatePath} not exists`);
-                return;
+        async.waterfall([
+            function(callback) {
+                // read content template
+                fs.readFile(templatePath, 'utf8', (err, data) => {
+                    if (err) {
+                        callback(Error(`${templatePath} not exists`), null);
+                        return;
+                    }
+
+                    console.log(`template: ${data}`);
+
+                    callback(null, Handlebars.compile(data));
+                });
+            },
+            function(contentTmpl, callback) {
+                // write files
+
+                async.eachLimit(data, 5, function(row, cb) {
+
+                    let _fileName = fileNameTmpl(row);
+                    let _content = contentTmpl(row);
+                    let _filePath = path.join(outputDir, _fileName);
+
+                    fs.writeFile(_filePath, _content, (err) => {
+                        if (err) {
+                            console.log(`[FAIL] ${_filePath}`);
+                            cb(err);
+                            return;
+                        }
+
+                        console.log(`[SUCCESS] ${_filePath}`);
+
+                        cb(null);
+                    });
+
+                }, callback);
             }
-
-            let contentTmpl = Handlebars.compile(data);
-        });
-
-
-
-        //let fileNameTmpl = Handlebars.compile()
-
-        //data.forEach((row) => {
-        //
-        //});
+        ]);
     }
 }
