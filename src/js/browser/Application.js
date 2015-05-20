@@ -15,7 +15,7 @@ import { spawn as spawn } from 'child_process';
 import AppMenu from './AppMenu';
 import AppWindow from './AppWindow';
 
-import TsvParser from './TsvParser';
+import CsvParser from './CsvParser';
 import Converter from './Converter';
 
 import consts from '../common/consts';
@@ -95,7 +95,7 @@ export default class Application extends EventEmitter {
             let params = JSON.parse(arg);
         });
 
-        (new TsvParser()).listen();
+        (new CsvParser()).listen();
     }
 
     promptForPath(type, callback) {

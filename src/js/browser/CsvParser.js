@@ -7,9 +7,9 @@ import fs from 'fs-plus';
 
 import consts from '../common/consts';
 
-export default class TsvParser {
+export default class CsvParser {
     constructor() {
-        console.log('TsvParser constructor');
+        console.log('CsvParser constructor');
         this.listen = this.listen.bind(this);
     }
 
@@ -17,7 +17,7 @@ export default class TsvParser {
         console.log('listen');
 
         ipc.on(consts.ipc.csv.src.send, (event, arg) => {
-            console.log('tsvparser async-tsv-sent-message', arg);
+            console.log('CsvParser async-tsv-sent-message', arg);
 
             if (arg && fs.existsSync(arg)) {
                 // file exists
