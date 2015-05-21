@@ -50,14 +50,14 @@ export default class DirectorySelector extends React.Component {
             <div className={`directorySelector ${this.props.className}`}>
                 <div className="row">
                     <div className="col-xs-9">
-                    <mui.TextField
-                        ref="targetDirName"
-                        hintText={this.props.hint}
-                        floatingLabelText={this.props.title}
-                        className="directorySelector__text"
-                        onChange={this._onTextChanged}
-                        value={textValue}/>
-                        </div>
+                        <mui.TextField
+                            ref="targetDirName"
+                            hintText={this.props.hint}
+                            floatingLabelText={this.props.title}
+                            className="directorySelector__text"
+                            onChange={this._onTextChanged}
+                            value={textValue}/>
+                    </div>
                     <div className="col-xs-3 col-align-center">
                         <mui.RaisedButton
                             secondary={true}
@@ -76,6 +76,7 @@ export default class DirectorySelector extends React.Component {
     _onButtonClick() {
         ipc.send(consts.ipc.pick.dir.send, consts.ipc.pick.dir.reply);
     }
+
     _updateDirPath(newValue) {
         if (newValue != this.state.targetPath) {
             this.setState({targetPath: newValue});

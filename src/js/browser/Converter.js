@@ -5,9 +5,13 @@ import path from 'path';
 import async from 'async';
 import Handlebars from 'handlebars';
 
+let removeReservedChar = function(fileName) {
+    return fileName.replace(/[\/\\\?%\*:\|"<>]/g, '');
+};
+
 
 export default {
-    convert(options, cb) {
+    convert(options, callback) {
         let {
             data,
             fileName,
@@ -24,42 +28,42 @@ export default {
         let fileNameTmpl = Handlebars.compile(fileName);
 
         async.waterfall([
-            function(callback) {
+            function(_callback) {
                 // read content template
                 fs.readFile(templatePath, 'utf8', (err, data) => {
                     if (err) {
-                        callback(Error(`${templatePath} not exists`), null);
+                        _callback(Error(`${templatePath} not exists`), null);
                         return;
                     }
 
                     console.log(`template: ${data}`);
 
-                    callback(null, Handlebars.compile(data));
+                    _callback(null, Handlebars.compile(data));
                 });
             },
-            function(contentTmpl, callback) {
+            function(contentTmpl, _callback) {
                 // write files
 
-                async.eachLimit(data, 5, function(row, cb) {
+                async.eachLimit(data, 5, function(row, __callback) {
 
-                    let _fileName = fileNameTmpl(row);
+                    let _fileName = removeReservedChar(fileNameTmpl(row));
                     let _content = contentTmpl(row);
                     let _filePath = path.join(outputDir, _fileName);
 
                     fs.writeFile(_filePath, _content, (err) => {
                         if (err) {
                             console.log(`[FAIL] ${_filePath}`);
-                            cb(err);
+                            __callback(err);
                             return;
                         }
 
                         console.log(`[SUCCESS] ${_filePath}`);
 
-                        cb(null);
+                        __callback(null);
                     });
 
-                }, callback);
+                }, _callback);
             }
-        ]);
+        ], callback);
     }
 }

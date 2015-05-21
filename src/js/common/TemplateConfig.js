@@ -1,8 +1,11 @@
 'use strict';
 
 export default {
-    help: {
-        title: '{{Category}}_{{order}}_{{title}}_{{device}}.md',
-        templatePath: '/template/help.md.hbs'
-    }
+    templates: [
+        {
+            type: 'help',
+            title: '{{{category}}}_{{{order}}}_{{{title}}}_{{{device}}}.md',
+            templatePath: '/template/help.md.hbs'
+        }
+    ]
 };

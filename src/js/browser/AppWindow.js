@@ -23,9 +23,9 @@ export default class AppWindow extends EventEmitter {
 
         let windowOpts = {
             width: 1000,
-            height: 600,
+            height: 700,
             'min-width': 1000,
-            'min-height': 600,
+            'min-height': 700,
             title: options.title ? options.title : 'You should set options.title',
             'web-preferences': {
                 'subpixel-font-scaling': true,

@@ -37,13 +37,6 @@ export default class Application extends EventEmitter {
 
         this.handleEvents();
         this.openWithOptions(options);
-
-        //Converter.convert({
-        //    data: {},
-        //    fileName: 'aaa',
-        //    outputDir: 'bbb',
-        //    templatePath: '/template/help.md.hbs'
-        //});
     }
 
     openWithOptions(options) {
@@ -93,6 +86,25 @@ export default class Application extends EventEmitter {
 
         ipc.on(consts.ipc.convert.send, (event, arg) => {
             let params = JSON.parse(arg);
+            console.log('convert start:', arg);
+
+            params.data.map((row) => {
+                row.device = row.device.trim().split(',');
+
+                return row;
+            });
+
+            if (!params.includeDraft) {
+                params.data = params.data.filter((row) => {
+                    return row.status === 'publish';
+                });
+            }
+
+            Converter.convert(params, (err) => {
+                console.log('convert callback:', arguments);
+
+                event.sender.send(consts.ipc.convert.reply, true);
+            });
         });
 
         (new CsvParser()).listen();
