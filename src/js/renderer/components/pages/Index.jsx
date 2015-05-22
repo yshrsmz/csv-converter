@@ -78,7 +78,8 @@ export default class Index extends React.Component {
                     <FileSelector
                         className="col-xs-9 col-align-center"
                         acceptFileType=".csv"
-                        onFileSelected={this._onSourceFileSelected}/>
+                        onFileSelected={this._onSourceFileSelected}
+                        acceptExtensions={[{name: 'CSV', extensions: ['csv']}]}/>
 
                     <div className="col-xs-3 col-align-center">
                         <mui.RaisedButton
@@ -203,7 +204,7 @@ export default class Index extends React.Component {
             includeDraft: this.state.includeDraft
         };
 
-        ipc.send(consts.ipc.convert.send, JSON.stringify(params));
+        ipc.send(consts.ipc.convert.send, params);
     }
 }
 

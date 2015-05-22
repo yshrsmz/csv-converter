@@ -1,7 +1,11 @@
 'use strict';
 
+import ipc from 'ipc';
+
 import React from 'react';
 import mui from 'material-ui';
+
+import consts from '../../common/consts';
 
 class FileSelector extends React.Component {
 
@@ -9,12 +13,13 @@ class FileSelector extends React.Component {
         super(props);
 
         this._onButtonClick = this._onButtonClick.bind(this);
-        this._onFileSelected = this._onFileSelected.bind(this);
         this._onTextChanged = this._onTextChanged.bind(this);
 
         this.state = {
             targetPath: ''
         };
+
+        this._handleEvents();
     }
 
     static get propTypes() {
@@ -22,7 +27,7 @@ class FileSelector extends React.Component {
             title: React.PropTypes.string,
             hint: React.PropTypes.string,
             className: React.PropTypes.string,
-            acceptFileType: React.PropTypes.string,
+            acceptExtensions: React.PropTypes.array,
             onFileSelected: React.PropTypes.func.isRequired
         }
     }
@@ -32,7 +37,7 @@ class FileSelector extends React.Component {
             title: 'Choose File',
             hint: 'Absolute path to the target file',
             className: '',
-            acceptFileType: '*'
+            acceptExtensions: []
         }
     }
 
@@ -56,36 +61,28 @@ class FileSelector extends React.Component {
                     <div className="col-xs-3 col-align-center">
                         <mui.RaisedButton
                             secondary={true}
-                            onClick={this._onButtonClick}>
-                            <span className="mui-raised-button-label">Select File</span>
-
-                            <form ref="filePickerForm">
-                                <input
-                                    ref="filePicker"
-                                    type="file"
-                                    className="fileSelector__button__input"
-                                    accept={this.props.acceptFileType}
-                                    onChange={this._onFileSelected}></input>
-                            </form>
-                        </mui.RaisedButton>
+                            label="Select File"
+                            onClick={this._onButtonClick}/>
                     </div>
                 </div>
             </div>
         );
     }
 
-    _onButtonClick() {
-
+    _handleEvents() {
+        ipc.on(consts.ipc.pick.file.reply, (filePaths) => {
+            if (filePaths && filePaths.length > 0) {
+                this._updateFilePath(filePaths[0]);
+            }
+        });
     }
 
-    _onFileSelected(e) {
-        if (e.target.files.length > 0) {
-            this._updateFilePath(e.target.files[0].path);
-        }
+    _onButtonClick() {
+        console.log('_onButtonClick: ', this.props.acceptExtensions);
+        ipc.send(consts.ipc.pick.file.send, this.props.acceptExtensions);
     }
 
     _onTextChanged(e) {
-        console.log('textchanged', e.target.value);
         this._updateFilePath(e.target.value);
     }
 
@@ -93,8 +90,6 @@ class FileSelector extends React.Component {
         if (newValue != this.state.targetPath) {
             this.setState({targetPath: newValue});
             this.props.onFileSelected(newValue);
-
-            this.refs.filePickerForm.getDOMNode().reset();
         }
     }
 }

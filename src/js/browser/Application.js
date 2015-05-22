@@ -84,9 +84,15 @@ export default class Application extends EventEmitter {
             });
         });
 
-        ipc.on(consts.ipc.convert.send, (event, arg) => {
-            let params = JSON.parse(arg);
-            console.log('convert start:', arg);
+        ipc.on(consts.ipc.pick.file.send, (event, filters = []) => {
+            console.log(consts.ipc.pick.file.send, filters);
+
+            this.promptForPathWithFilter('file', filters, (selectedPaths) => {
+                event.sender.send(consts.ipc.pick.file.reply, selectedPaths);
+            });
+        });
+
+        ipc.on(consts.ipc.convert.send, (event, params) => {
 
             params.data.map((row) => {
                 row.device = row.device.trim().split(',');
@@ -111,6 +117,10 @@ export default class Application extends EventEmitter {
     }
 
     promptForPath(type, callback) {
+        this.promptForPathWithFilter(type, [], callback);
+    }
+
+    promptForPathWithFilter(type, filters, callback) {
         let properties;
         switch (type) {
             case 'file':
@@ -132,6 +142,10 @@ export default class Application extends EventEmitter {
             properties: properties.concat(['multiSelections', 'createDirectory']),
             title: 'Open'
         };
+
+        if (filters && filters.length > 0) {
+            openOptions.filters = filters;
+        }
 
         let dialog = require('dialog');
         dialog.showOpenDialog(parentWindow, openOptions, callback);
