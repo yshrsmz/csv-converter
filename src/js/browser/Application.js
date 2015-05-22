@@ -26,7 +26,7 @@ export default class Application extends EventEmitter {
         super();
 
         this.devMode = options.devMode;
-        this.pkgJson = require('../package.json');
+        this.pkgJson = require('../../package.json');
         this.windows = [];
 
         app.on('window-all-closed', () => {

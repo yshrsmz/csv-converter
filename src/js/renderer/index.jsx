@@ -3,8 +3,8 @@
 import React from 'react';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import Router from 'react-router';
-import App from './renderer/components/App';
-import Routes from './renderer/Routes';
+import App from './js/renderer/components/App';
+import Routes from './js/renderer/Routes';
 
 window.React = React;
 injectTapEventPlugin();

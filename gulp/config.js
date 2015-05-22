@@ -20,7 +20,7 @@ module.exports = {
         build: {
             version: '0.26.0',
             src: dest,
-            main: 'main.js',
+            main: 'js/main.js',
             darwin: {
                 dest: './release/darwin.zip'
             }
@@ -28,7 +28,7 @@ module.exports = {
     },
     babel: {
         src: [src + '/js/**/*.js', src + '/js/**/*.jsx'],
-        dest: dest
+        dest: dest + '/js'
     },
     styles: {
         less: {

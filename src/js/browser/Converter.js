@@ -21,7 +21,7 @@ export default {
 
         console.log('dirname', __dirname);
 
-        templatePath = path.resolve(path.join(__dirname, '..', templatePath));
+        templatePath = path.resolve(path.join(__dirname, '..', '..', templatePath));
 
         console.log('templatePath', templatePath);
 

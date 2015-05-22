@@ -48,7 +48,7 @@ export default class AppWindow extends EventEmitter {
 
     show() {
 
-        let targetPath = path.resolve(__dirname, '..', 'index.html')
+        let targetPath = path.resolve(__dirname, '..', '..', 'index.html')
 
         let targetUrl = url.format({
             protocol: 'file',
