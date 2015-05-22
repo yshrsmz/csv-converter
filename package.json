@@ -1,5 +1,6 @@
 {
-  "name": "tsv-converter",
+  "name": "csv-converter",
+  "productName": "CSV Converter",
   "version": "0.0.1",
   "description": "convert tsv to text files, based on provided template",
   "main": "index.js",

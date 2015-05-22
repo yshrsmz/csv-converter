@@ -9,16 +9,17 @@ import LeftNav from './LeftNav';
 export default class App extends React.Component {
     constructor() {
         super();
+
         this._onMenuIconButtonTouchTap = this._onMenuIconButtonTouchTap.bind(this);
+
     }
     render() {
-        console.log('app render');
         return (
 
             <mui.AppCanvas predefinedLayout={1}>
                 <mui.AppBar
                     className="mui-dark-theme"
-                    title="TSV Converter"
+                    title="CSV Converter"
                     zDepth={0}
                     onMenuIconButtonTouchTap={this._onMenuIconButtonTouchTap}>
                 </mui.AppBar>

@@ -12,6 +12,7 @@ var packageConfig = require('../../package.json');
 gulp.task('electron-config', function() {
     var appConfig = {
         name: packageConfig.name,
+        productName: packageConfig.productName,
         version: packageConfig.version,
         main: config.build.main
     };
