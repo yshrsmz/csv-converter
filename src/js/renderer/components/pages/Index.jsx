@@ -183,8 +183,8 @@ export default class Index extends React.Component {
         this.setState({outputDir: path});
     }
 
-    _onOutputFileNameChanged(newName) {
-        console.log('outputFileName: ', newName);
+    _onOutputFileNameChanged(newValue) {
+        console.log('outputFileName: ', newValue);
         this.setState({outputFileName: newValue});
     }
 
